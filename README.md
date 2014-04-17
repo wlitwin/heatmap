@@ -50,6 +50,31 @@ OPTIONS:
 
 -sc, --start-color ARG1[,ARGn]   Starting heat map color in HSV. [0-255]
 
+Data File Format
+================
+
+The datapoint file format is very simple:
+
+`timestamp [whitespace] xcoord [whitespace] ycoord [newline == '\n']`
+
+where timestamp is in seconds (or fractions of seconds) and xcoord and ycoord are pixel coordinates. All three values can be floating point, but the x and y coordinates are rounded and converted to unsigned integers during reading.
+
+The timestamp should be relative to the start of the data, for example:
+
+    0       10   20
+    0.016   11   25
+    0.032   50   23
+    0.048   30   90
+    ...
+
+The timestamp is matched with the video timeline, so if you don't want any data until 5 seconds in, then you can have a datafile like:
+
+    5      10  20
+    5.016  11  40
+    5.032  20  50
+    ...
+
+
 Visuals
 =======
 
